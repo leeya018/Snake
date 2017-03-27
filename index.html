@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Snake</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+
+
+<button id="snake_butt" onkeypress="move()"></button>
+
+<button id="food_butt"></button>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script type="text/javascript" src="Position.js"></script>
+<script type="text/javascript" src="Food.js"></script>
+<script type="text/javascript" src="Snake.js"></script>
+<script type="text/javascript" src="function.js"></script>
+<script>
+	$(document).ready(function(){
+		console.log("ready1");
+
+		snake1.position.draw("blue");
+		food1.draw();
+	});
+
+
+
+
+// $(document).keypress(function(event){
+//   alert(String.fromCharCode(event.keyCode)); 
+// });
+
+
+$(document).keydown(function(e) {
+	 // alert((e.keyCode));
+    switch(e.which) {
+        case 37: // left
+        snake1.moveLeft();
+        break;
+
+        case 38: // up
+        snake1.moveUp();
+        break;
+
+        case 39: // right
+       snake1.moveRight();
+        break;
+
+        case 40: // down
+        snake1.moveDown();
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+#snake_butt{
+
+	 visibility: hidden;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+
+
+}
+
+
+
+#food_butt{
+
+
+	 visibility: hidden;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+
+
+}
