@@ -1,8 +1,9 @@
 var sizeStr ="20px";
 // position
-function position(xOther,yOther){
+function position(xOther,yOther,button){
 	this.x=xOther;
 	this.y=yOther;
+	this.butt = button;
 
 
 	//this is for the snake 
@@ -10,13 +11,15 @@ function position(xOther,yOther){
 		var xStr = this.x+"px";
 		var yStr = this.y+"px";
 
-  		$("#snake_butt").css("background-color", color);
-	    $("#snake_butt").css("position", "absolute");
-		$("#snake_butt").css("left", xStr);
-		$("#snake_butt").css("top", yStr);
-		$("#snake_butt").css("width", sizeStr);
-		$("#snake_butt").css("height",sizeStr);
-		$("#snake_butt").css("visibility","visible");
+
+  		this.butt.css("background-color", color);
+	    this.butt.css("position", "absolute");
+		this.butt.css("left", xStr);
+		this.butt.css("top", yStr);
+		this.butt.css("width", sizeStr);
+		this.butt.css("height",sizeStr);
+		this.butt.css("visibility","visible");
+
 
 
 	}
@@ -32,6 +35,11 @@ function position(xOther,yOther){
 		$("#food_butt").css("width", sizeStr);
 		$("#food_butt").css("height",sizeStr);
 		$("#food_butt").css("visibility","visible");
+
+	}
+
+	this.equals = function(otherPosition){
+		return this.x == otherPosition.x && this.y == otherPosition.y 
 
 	}
 
