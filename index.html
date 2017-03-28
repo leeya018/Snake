@@ -8,50 +8,53 @@
 <body>
 
 
+	<div id="main">
 
-<button id="snake_butt" onkeypress="move()"></button>
-
-<button id="food_butt"></button>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-<script type="text/javascript" src="Position.js"></script>
-<script type="text/javascript" src="Food.js"></script>
-<script type="text/javascript" src="Snake.js"></script>
-<script type="text/javascript" src="function.js"></script>
-<script>
-	$(document).ready(function(){
-		console.log("ready1");
-
-		snake1.position.draw("blue");
-		food1.draw();
-	});
+		<!-- <button id="snake_butt1" onkeypress="move()"></button> -->
+	</div>
 
 
+	<button id="food_butt"></button>
 
 
-// $(document).keypress(function(event){
-//   alert(String.fromCharCode(event.keyCode)); 
-// });
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+	<script type="text/javascript" src="Position.js"></script>
+	<script type="text/javascript" src="Food.js"></script>
+	<script type="text/javascript" src="Snake.js"></script>
+	<script type="text/javascript" src="function.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			snake1.buildBody();
+			console.log("ready1");
+			snake1.createFood();
+
+		});
 
 
-$(document).keydown(function(e) {
+		var intervalId;
+		var speed =100;
+		$(document).keydown(function(e) {
 	 // alert((e.keyCode));
-    switch(e.which) {
+	 switch(e.which) {
         case 37: // left
-        snake1.moveLeft();
+        clearInterval(intervalId);
+        intervalId= setInterval(moveLeftInterval,speed);
         break;
 
         case 38: // up
-        snake1.moveUp();
+        clearInterval(intervalId);
+        intervalId = setInterval(moveUpInterval,speed);
         break;
 
         case 39: // right
-       snake1.moveRight();
+        clearInterval(intervalId);
+        intervalId = setInterval(moveRightInterval,speed);
         break;
 
         case 40: // down
-        snake1.moveDown();
+        clearInterval(intervalId);
+        intervalId = setInterval(moveDownInterval,speed);
         break;
 
         default: return; // exit this handler for other keys
