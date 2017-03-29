@@ -1,13 +1,20 @@
-var step = 20;
-var buttNum;
-var snake1 = new snake("green");
 
-function snake(color){
+// var s.snake = new snake("green",1);
+
+function snake(color,level){
 	this.color = color;
+	this.level = level;
 	this.speed = 100;
 	this.direction=0; //1-left  2-up 3-right 4-down
 	this.barrier=[];
 	this.food;
+	this.score=0;
+	this.goal = goalPoints[level-1];
+	$("#score").text(this.score);
+	$("#goal").text(this.goal);
+	$("#level").text(this.level);
+
+	this.intervalFood = setInterval(createFood,foodAppearIntervalSpeed);
 
 	this.arraySnake = [];
 
@@ -39,17 +46,6 @@ function snake(color){
 
 	}
 
-	this.createFood = function(){
-
-
-		this.food = new food();
-		while(this.food.crashLimits())
-		{
-			this.food = new food();
-		}
-		this.food.draw();
-
-	}
 
 	this.increaseSizeByOne = function(){
 		var head = this.arraySnake[0];
@@ -111,17 +107,23 @@ function snake(color){
 
 
 	this.eatingCheck = function(){
-
+		console.log("head position : "+ this.arraySnake[0].x+ ", "+this.arraySnake[0].y);
 		if(this.canSnakeEat()){
 			console.log("I can eat"+ this.direction);
 			// this.increaseSizeByOne();
 			this.food.randomPower();
-			this.createFood();
+			this.food.delete();
+			s.checkIfLevelFinish();
+
 		}
 	}
 
+
+
+
 //add new item to the head and remove last
 this.replacePosition = function(x,y){
+	// console.log("snake head :    "+this.arraySnake[0],x+","+this.arraySnake[0],y);
 		var rem = this.arraySnake.pop();// delete from end
 		var newPos = new position(x,y,rem.butt);
 		this.arraySnake.unshift(newPos);//add as first item 
@@ -142,7 +144,7 @@ this.replacePosition = function(x,y){
 	}
 
 	this.checkCrushInBarrier = function(){
-		for (var i = 1; i < this.barrier.length; i++) {
+		for (var i = 0; i < this.barrier.length; i++) {
 			if(this.arraySnake[0].equals(this.barrier[i])){
 				alert("stuck in Barrier");
 				return true;
@@ -210,13 +212,20 @@ this.replacePosition = function(x,y){
 
 	}
 
+	this.destroy = function(){
+		for (var i = 0; i < this.arraySnake.length; i++) {
+			this.arraySnake[i].butt.remove();	
+		}
+
+	}
+
 	
 }
 
 //=============================================================
 
 var intervalId;
-		var intervalFood = setInterval(snake1.createFood,2000);
+		// var intervalFood = setInterval(s.snake.createFood,2000);
 		$(document).keydown(function(e) {
 	 // alert((e.keyCode));
 	 $("#instructionRel").css("visibility","hidden");
@@ -224,22 +233,22 @@ var intervalId;
 
         case 37: // left
         clearInterval(intervalId);
-        intervalId= setInterval(moveLeftInterval,snake1.speed);
+        intervalId= setInterval(moveLeftInterval,s.snake.speed);
         break;
 
         case 38: // up
         clearInterval(intervalId);
-        intervalId = setInterval(moveUpInterval,snake1.speed);
+        intervalId = setInterval(moveUpInterval,s.snake.speed);
         break;
 
         case 39: // right
         clearInterval(intervalId);
-        intervalId = setInterval(moveRightInterval,snake1.speed);
+        intervalId = setInterval(moveRightInterval,s.snake.speed);
         break;
 
         case 40: // down
         clearInterval(intervalId);
-        intervalId = setInterval(moveDownInterval,snake1.speed);
+        intervalId = setInterval(moveDownInterval,s.snake.speed);
         break;
 
         default: return; // exit this handler for other keys
@@ -249,4 +258,25 @@ var intervalId;
 
 
 
+		function createFood (){
+
+
+			s.snake.food = new food();
+			while(s.snake.food.crashLimits())
+			{
+				s.snake.food = new food();
+			}
+			s.snake.food.draw();
+
+		}
+
+
+
+		// function checkIfLevelFinish(snake){
+		// 	console.log("snake score :" +snake.score);
+		// 	if( snake.score == goalPoints[snake.level-1]){
+		// 		var s.snake = new snake("green",snake.level + 1);
+		// 	} 
+
+		// }
 
