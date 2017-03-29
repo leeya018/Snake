@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<a id="instructionRel" href="instruction.html">instruction</a>
 
 
 	<div id="main">
@@ -27,40 +28,42 @@
 
 			snake1.buildBody();
 			console.log("ready1");
-			snake1.createFood();
+			// snake1.createFood();
 
 		});
 
 
-		var intervalId;
-		var speed =100;
-		$(document).keydown(function(e) {
-	 // alert((e.keyCode));
-	 switch(e.which) {
-        case 37: // left
-        clearInterval(intervalId);
-        intervalId= setInterval(moveLeftInterval,speed);
-        break;
+// 		var intervalId;
+// 		var speed =100;
+// 		$(document).keydown(function(e) {
+// 	 // alert((e.keyCode));
+// 	 	 	$("#instructionRel").css("visibility","hidden");
+// 	 switch(e.which) {
 
-        case 38: // up
-        clearInterval(intervalId);
-        intervalId = setInterval(moveUpInterval,speed);
-        break;
+//         case 37: // left
+//         clearInterval(intervalId);
+//         intervalId= setInterval(moveLeftInterval,speed);
+//         break;
 
-        case 39: // right
-        clearInterval(intervalId);
-        intervalId = setInterval(moveRightInterval,speed);
-        break;
+//         case 38: // up
+//         clearInterval(intervalId);
+//         intervalId = setInterval(moveUpInterval,speed);
+//         break;
 
-        case 40: // down
-        clearInterval(intervalId);
-        intervalId = setInterval(moveDownInterval,speed);
-        break;
+//         case 39: // right
+//         clearInterval(intervalId);
+//         intervalId = setInterval(moveRightInterval,speed);
+//         break;
 
-        default: return; // exit this handler for other keys
-    }
-    e.preventDefault(); // prevent the default action (scroll / move caret)
-});
+//         case 40: // down
+//         clearInterval(intervalId);
+//         intervalId = setInterval(moveDownInterval,speed);
+//         break;
+
+//         default: return; // exit this handler for other keys
+//     }
+//     e.preventDefault(); // prevent the default action (scroll / move caret)
+// });
 </script>
 </body>
 </html>
