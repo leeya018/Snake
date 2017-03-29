@@ -39,7 +39,7 @@ var iso = function increaseSizeByOne(){
 var bs = function barrierSnake(){
 	var barrier=[];
 	for (var i = 0 ; i<3 ; i++) {
-		s.snake.barrier.push(s.snake.arraySnake.pop());
+		s.barrier.push(s.snake.arraySnake.pop());
 	}
 	s.snake.score = s.snake.score-1;
 	$("#score").text(s.snake.score);
@@ -67,7 +67,7 @@ function food(){
 	}
 
 	this.crashLimits = function(){
-		return this.crashSnake() && this.crashBarrier();
+		return this.crashSnake() || this.crashBarrier();
 
 
 	}
@@ -83,8 +83,8 @@ function food(){
 	}
 
 	this.crashBarrier = function(){
-		for (var i = 0; i < s.snake.barrier.length; i++) {
-			if(s.snake.barrier[0].equals(this.position)){
+		for (var i = 0; i < s.barrier.length; i++) {
+			if(s.barrier[0].equals(this.position)){
 				return true;
 			}
 		}
