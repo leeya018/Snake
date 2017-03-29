@@ -2,60 +2,95 @@
 
 
 function randomToFive(){
-	return Math.floor(Math.random()*5);
+	return Math.floor(Math.random()*Object.keys(types).length);
 
 }
 
 
-var d = function decrease(){
-	console.log("decrease invoke");
+var cst = function cutSnakeByThree(){
+	for (var i = 0 ; i<3 ; i++) {
+		var rem = snake1.arraySnake.pop();
+		rem.butt.remove();
+	}
+	console.log("cut the snake");
 }
 
-var i = function increase(){
-	console.log("increase invoke");
+var isd = function increaseSpeed(){
+	console.log("increase speed");
+	snake1.speed = snake1.speed-10;
+	
 }
 
-function randomPower(color){
-	return types[color]();
+var iso = function increaseSizeByOne(){
+	snake1.increaseSizeByOne();
 
 }
 
-// i and d are the functions vars
-var types = {"blue":i,"red":d,"black":i,"darkviolet":d,"violet":i};
+var bs = function barrierSnake(){
+	var barrier=[];
+	for (var i = 0 ; i<3 ; i++) {
+		snake1.barrier.push(snake1.arraySnake.pop());
+	}
+	console.log("barrier snake");
 
- function randomcolor(){
- 	var randNum = randomToFive();
+}
+
+
+var types = {"blue":cst,"yellow":isd,"orange":iso,"black":bs,"orange":iso,"orange":iso,"orange":iso};
+
+function randomcolor(){
+	var randNum = randomToFive();
 	var key = Object.keys(types)[randNum];
-	 return key;
+	return key;
 
 }
 
-function crashLimits(snakeBody,foodPosition){
-	for (var i = 0; i < snakeBody.length; i++) {
-		if(snakeBody[0].equals(foodPosition)){
+//================================================================FOOD=====================
+var widthScreen = 870;
+var heightScreen = 380;
+
+function food(){
+	this.position = randomPosition();
+
+	this.draw = function(){
+
+		this.color = randomcolor();
+	
+	this.position.drawFood(this.color);
+}
+
+this.crashLimits = function(){
+	return this.crashSnake() && this.crashBarrier();
+
+
+}
+
+this.crashSnake = function(){
+	for (var i = 0; i < snake1.arraySnake.length; i++) {
+		if(snake1.arraySnake[0].equals(this.position)){
 			return true;
 		}
 	}
 	return false;
 
 }
-//================================================================FOOD=====================
 
-
-function food(){
-
-this.draw = function(snakeBody){
-
-	this.position = randomPosition();
-	while(crashLimits(snakeBody,this.position)){
-		this.position = randomPosition();
+this.crashBarrier = function(){
+		for (var i = 0; i < snake1.barrier.length; i++) {
+		if(snake1.barrier[0].equals(this.position)){
+			return true;
+		}
 	}
+	return false;
 
-	this.color = randomcolor();
-	this.power = randomPower(this.color);
-	this.position.drawFood(this.color);
-	return this.position;
 }
+
+this.randomPower = function(){
+	 types[this.color]();
+
+}
+
+
 
 
 
@@ -68,14 +103,16 @@ this.draw = function(snakeBody){
 
 
 
- function randomPosition(){
 
-	var random = Math.floor(Math.random()*870); 
+
+function randomPosition(){
+
+	var random = Math.floor(Math.random()*widthScreen); 
 	var modulu = random%20;
 	var randomX = random - modulu;
 
 
-	random = Math.floor(Math.random()*380); 
+	random = Math.floor(Math.random()*heightScreen); 
 	modulu = random%20;
 	var randomY = random - modulu;
 
