@@ -2,93 +2,114 @@
 
 
 function randomToFive(){
-	return Math.floor(Math.random()*Object.keys(types).length);
+	// return Math.floor(Math.random()*Object.keys(types[s.snake.level-1]).length);
+
+	return Math.floor(Math.random()*Object.keys(types[s.snake.level-1]).length);
+
 
 }
 
 
+
 var cst = function cutSnakeByThree(){
 	for (var i = 0 ; i<3 ; i++) {
-		var rem = snake1.arraySnake.pop();
+		var rem = s.snake.arraySnake.pop();
 		rem.butt.remove();
 	}
+	s.snake.score = s.snake.score-3;
+	$("#score").text(s.snake.score);
 	console.log("cut the snake");
 }
 
 var isd = function increaseSpeed(){
 	console.log("increase speed");
-	snake1.speed = snake1.speed-10;
-	
+	s.snake.speed = s.snake.speed-10;
+	s.snake.score = s.snake.score+2;
+
+	$("#score").text(s.snake.score);
 }
 
 var iso = function increaseSizeByOne(){
-	snake1.increaseSizeByOne();
-
+	s.snake.increaseSizeByOne();
+	s.snake.score = s.snake.score+1;
+	$("#score").text(s.snake.score);
+	console.log("snake score :" +s.snake.score);
 }
 
 var bs = function barrierSnake(){
 	var barrier=[];
 	for (var i = 0 ; i<3 ; i++) {
-		snake1.barrier.push(snake1.arraySnake.pop());
+		s.snake.barrier.push(s.snake.arraySnake.pop());
 	}
+	s.snake.score = s.snake.score-1;
+	$("#score").text(s.snake.score);
 	console.log("barrier snake");
 
 }
 
 
-var types = {"blue":cst,"yellow":isd,"orange":iso,"black":bs,"orange":iso,"orange":iso,"orange":iso};
 
-function randomcolor(){
-	var randNum = randomToFive();
-	var key = Object.keys(types)[randNum];
-	return key;
 
-}
 
 //================================================================FOOD=====================
-var widthScreen = 870;
-var heightScreen = 380;
+var widthScreen = 900;
+var heightScreen = 400;
 
 function food(){
+	this.randNum;
 	this.position = randomPosition();
 
 	this.draw = function(){
 
-		this.color = randomcolor();
-	
-	this.position.drawFood(this.color);
-}
+		this.color = this.randomcolor();
 
-this.crashLimits = function(){
-	return this.crashSnake() && this.crashBarrier();
-
-
-}
-
-this.crashSnake = function(){
-	for (var i = 0; i < snake1.arraySnake.length; i++) {
-		if(snake1.arraySnake[0].equals(this.position)){
-			return true;
-		}
+		this.position.drawFood(this.color);
 	}
-	return false;
 
-}
+	this.crashLimits = function(){
+		return this.crashSnake() && this.crashBarrier();
 
-this.crashBarrier = function(){
-		for (var i = 0; i < snake1.barrier.length; i++) {
-		if(snake1.barrier[0].equals(this.position)){
-			return true;
-		}
+
 	}
-	return false;
 
-}
+	this.crashSnake = function(){
+		for (var i = 0; i < s.snake.arraySnake.length; i++) {
+			if(s.snake.arraySnake[0].equals(this.position)){
+				return true;
+			}
+		}
+		return false;
 
-this.randomPower = function(){
-	 types[this.color]();
+	}
 
-}
+	this.crashBarrier = function(){
+		for (var i = 0; i < s.snake.barrier.length; i++) {
+			if(s.snake.barrier[0].equals(this.position)){
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	this.randomPower = function(){
+		// types[s.snake.level-1][this.color]();
+		types[s.snake.level-1][this.randNum][this.color]();
+
+	}
+
+	this.delete = function(){
+		$("#food_butt").css("visibility","hidden");
+	}
+
+
+	this.randomcolor = function (){
+		this.randNum= randomToFive();
+		var key = Object.keys(types[s.snake.level-1][this.randNum]);
+		return key;
+
+	}
+
 
 
 

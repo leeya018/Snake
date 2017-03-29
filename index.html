@@ -7,6 +7,9 @@
 </head>
 <body>
 <a id="instructionRel" href="instruction.html">instruction</a>
+<h4>your goal : </h4> <h4 id="goal"></h4>
+<h4>your score</h4> <h4 id="score"></h4>
+<h4>your level</h4> <h4 id="level"></h4>
 
 
 	<div id="main">
@@ -20,50 +23,20 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 	<script type="text/javascript" src="Position.js"></script>
+
 	<script type="text/javascript" src="Food.js"></script>
+		<script type="text/javascript" src="stage.js"></script>
 	<script type="text/javascript" src="Snake.js"></script>
 	<script type="text/javascript" src="function.js"></script>
 	<script>
 		$(document).ready(function(){
 
-			snake1.buildBody();
+			// snake1.buildBody();
 			console.log("ready1");
-			// snake1.createFood();
-
+ s = new stage(1);
 		});
 
 
-// 		var intervalId;
-// 		var speed =100;
-// 		$(document).keydown(function(e) {
-// 	 // alert((e.keyCode));
-// 	 	 	$("#instructionRel").css("visibility","hidden");
-// 	 switch(e.which) {
-
-//         case 37: // left
-//         clearInterval(intervalId);
-//         intervalId= setInterval(moveLeftInterval,speed);
-//         break;
-
-//         case 38: // up
-//         clearInterval(intervalId);
-//         intervalId = setInterval(moveUpInterval,speed);
-//         break;
-
-//         case 39: // right
-//         clearInterval(intervalId);
-//         intervalId = setInterval(moveRightInterval,speed);
-//         break;
-
-//         case 40: // down
-//         clearInterval(intervalId);
-//         intervalId = setInterval(moveDownInterval,speed);
-//         break;
-
-//         default: return; // exit this handler for other keys
-//     }
-//     e.preventDefault(); // prevent the default action (scroll / move caret)
-// });
 </script>
 </body>
 </html>

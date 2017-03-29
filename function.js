@@ -1,25 +1,25 @@
 
 function moveRightInterval(){
-	snake1.direction =3;
-	snake1.moveRight();
+	s.snake.direction =3;
+	s.snake.moveRight();
 }
 
 
 function moveUpInterval(){
-	snake1.direction =2;
-	snake1.moveUp();
+	s.snake.direction =2;
+	s.snake.moveUp();
 }
 
 
 function moveLeftInterval(){
-	snake1.direction =1;
-	snake1.moveLeft();
+	s.snake.direction =1;
+	s.snake.moveLeft();
 }
 
 
 function moveDownInterval(){
-	snake1.direction =4;
-	snake1.moveDown();
+	s.snake.direction =4;
+	s.snake.moveDown();
 }
 
 function canSnakeEatLeft(snakeHead,food){
