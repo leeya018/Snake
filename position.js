@@ -39,8 +39,13 @@ function position(xOther,yOther,button){
 	}
 
 	this.equals = function(otherPosition){
-		return this.x == otherPosition.x && this.y == otherPosition.y 
+		return this.x == otherPosition.x && this.y == otherPosition.y;
 
 	}
+
+	this.randomPower = function(){
+	return types[this.color]();
+
+}
 
 	}
