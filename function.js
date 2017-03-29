@@ -28,19 +28,19 @@ function canSnakeEatLeft(snakeHead,food){
 }
 
 function canSnakeEatUp(snakeHead,food){
-	 
-	 return snakeHead.x == food.x && snakeHead.y -20 == food.y;
+
+	return snakeHead.x == food.x && snakeHead.y -20 == food.y;
 	
 }
 
 function canSnakeEatRight(snakeHead,food){
 
-	 return snakeHead.x +20 == food.x && snakeHead.y==food.y;
+	return snakeHead.x +20 == food.x && snakeHead.y==food.y;
 }
 
 function canSnakeEatDown(snakeHead,food){
 
-	 return snakeHead.x == food.x && snakeHead.y +20 == food.y;
+	return snakeHead.x == food.x && snakeHead.y +20 == food.y;
 	
 }
 
